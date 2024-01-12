@@ -1,4 +1,5 @@
 function [x,y] = modginput(strpointertype)
+
 fig = gcf;
 figure(gcf);
 
@@ -10,7 +11,7 @@ fig_units = get(fig,'units');
 % Wait for mouse click
 % waitforbuttonpress returns 0 if mouse was clicked 1 if key
 k = 1;
-while k==0
+while k==1
     k = waitforbuttonpress;
 end
 
@@ -30,5 +31,3 @@ y = pt(1,2);
 uirestore(state);
 set(fig,'units',fig_units);
 end
-
-
