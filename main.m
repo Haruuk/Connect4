@@ -4,24 +4,25 @@ BoardSetup;
 
 %% Game loop
 Winner=false;
-PlayerTurn=1;%Red
+PlayerTurn=2;%Yellow ->Red starts
 while ~Winner
-  
-[GameState] = Turn(GameState,PlayerTurn,ptr,cx2,cy2,gx,gy,ir);
+    % Swap players
+    switch PlayerTurn
+        case 1
+            PlayerTurn = 2;
+        case 2
+            PlayerTurn = 1;
+    end
 
-%Swap players
-switch PlayerTurn
-    case 1
-        PlayerTurn = 2;
-    case 2
-        PlayerTurn = 1;
+    % Take turn
+    [GameState] = Turn(GameState,PlayerTurn,ptr,cx2,cy2,gx,gy,ir);
+
+    %Check Winner
+    Winner = CheckWinner(GameState);
 end
-
-%Check Winner
-Winner = CheckWinner(GameState);
-end
-
+%% End Game
 close(f)
+
 if PlayerTurn == 1
     WinPlayer = "Red";
 else
